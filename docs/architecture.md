@@ -35,18 +35,19 @@ The goal is to separate client workstations, internal servers and exposed servic
 
 ## Logical Diagram
 
-Home Network / WAN 192.168.0.0/24
-        |
-        | OPNsense WAN 192.168.0.57
-        |
-    [ OPNsense ]
-      /   |   \
-     /    |    \
-   LAN  SERVERS DMZ
-10.10.10.0/24 10.10.20.0/24 10.10.30.0/24
-   |       |       |
-WIN11   SRV-AD01  web01
-10.10.10.105 10.10.20.10 10.10.30.10
+- Home Network / WAN: 192.168.0.0/24
+  - OPNsense WAN: 192.168.0.57
+
+- LAN: 10.10.10.0/24
+  - WIN11-LAB: 10.10.10.105
+
+- SERVERS: 10.10.20.0/24
+  - SRV-AD01: 10.10.20.10
+
+- DMZ: 10.10.30.0/24
+  - web01: 10.10.30.10
+
+OPNsense routes and filters traffic between WAN, LAN, SERVERS and DMZ.
 
 ## Design Goals
 
