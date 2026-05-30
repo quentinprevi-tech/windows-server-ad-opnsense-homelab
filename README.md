@@ -8,54 +8,66 @@ This lab simulates a small business infrastructure with network segmentation, Ac
 
 ## Network Zones
 
-| Zone | Network | Purpose |
-|---|---:|---|
-| WAN / Home Network | 192.168.0.0/24 | External network used as OPNsense WAN |
-| LAN | 10.10.10.0/24 | Domain client workstations |
-| SERVERS | 10.10.20.0/24 | Internal servers and Active Directory |
-| DMZ | 10.10.30.0/24 | Exposed web services |
+- WAN / Home Network: 192.168.0.0/24
+  - External network used as the OPNsense WAN.
+
+- LAN: 10.10.10.0/24
+  - Domain client workstations.
+
+- SERVERS: 10.10.20.0/24
+  - Internal servers such as Active Directory and DNS.
+
+- DMZ: 10.10.30.0/24
+  - Exposed services such as the Nginx web server.
 
 ## Main Virtual Machines
 
-| VM | Role | IP |
-|---|---|---:|
-| OPNsense | Firewall/router | 192.168.0.57 / 10.10.10.1 / 10.10.20.1 / 10.10.30.1 |
-| SRV-AD01 | Windows Server AD DS + DNS | 10.10.20.10 |
-| WIN11-LAB | Domain-joined Windows 11 client | 10.10.10.105 |
-| web01 | Debian/Nginx DMZ web server | 10.10.30.10 |
+- OPNsense
+  - Role: Firewall/router
+  - IPs: 192.168.0.57 / 10.10.10.1 / 10.10.20.1 / 10.10.30.1
+
+- SRV-AD01
+  - Role: Windows Server AD DS + DNS
+  - IP: 10.10.20.10
+
+- WIN11-LAB
+  - Role: Domain-joined Windows 11 client
+  - IP: 10.10.10.105
+
+- web01
+  - Role: Debian/Nginx DMZ web server
+  - IP: 10.10.30.10
 
 ## Implemented Features
 
-- Proxmox VE virtual networking with isolated bridges
-- OPNsense firewall with LAN / SERVERS / DMZ segmentation
-- Windows Server Active Directory domain: homelab.local
-- AD-integrated DNS
-- Windows 11 domain-joined client
-- Organizational Units, users and security groups
-- Group Policy Objects
-- File share with AD group-based permissions
-- Automatic drive mapping through GPO
-- Debian/Nginx web server in the DMZ
-- Internal DNS record: web01.homelab.local -> 10.10.30.10
-- WAN-to-DMZ NAT: 192.168.0.57:8080 -> 10.10.30.10:80
-- Firewall hardening between LAN, SERVERS and DMZ
-- Proxmox snapshots and vzdump backups
+- Proxmox VE virtual networking with isolated bridges.
+- OPNsense firewall with LAN / SERVERS / DMZ segmentation.
+- Windows Server Active Directory domain: homelab.local.
+- AD-integrated DNS.
+- Windows 11 domain-joined client.
+- Organizational Units, users and security groups.
+- Group Policy Objects.
+- File share with AD group-based permissions.
+- Automatic drive mapping through GPO.
+- Debian/Nginx web server in the DMZ.
+- Internal DNS record: web01.homelab.local -> 10.10.30.10.
+- WAN-to-DMZ NAT: 192.168.0.57:8080 -> 10.10.30.10:80.
+- Firewall hardening between LAN, SERVERS and DMZ.
+- Proxmox snapshots and vzdump backups.
 
 ## Validation Summary
 
-| Test | Result |
-|---|---|
-| Windows 11 domain join | Success |
-| nltest /dsgetdc:homelab.local | Success |
-| gpupdate /force | Success |
-| Drive mapping through GPO | Success |
-| web01.homelab.local DNS resolution | Success |
-| LAN to DMZ HTTP access | Success |
-| WAN to DMZ NAT on port 8080 | Success |
-| DMZ to LAN ping | Blocked as expected |
-| DMZ to SRV-AD01 ping | Blocked as expected |
-| DMZ to SRV-AD01 DNS | Allowed |
-| DMZ to Internet HTTP/HTTPS | Allowed |
+- Windows 11 domain join: Success.
+- nltest /dsgetdc:homelab.local: Success.
+- gpupdate /force: Success.
+- Drive mapping through GPO: Success.
+- web01.homelab.local DNS resolution: Success.
+- LAN to DMZ HTTP access: Success.
+- WAN to DMZ NAT on port 8080: Success.
+- DMZ to LAN ping: Blocked as expected.
+- DMZ to SRV-AD01 ping: Blocked as expected.
+- DMZ to SRV-AD01 DNS: Allowed.
+- DMZ to Internet HTTP/HTTPS: Allowed.
 
 ## Security Approach
 
