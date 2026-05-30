@@ -77,6 +77,34 @@ Default broad firewall rules were disabled and replaced with targeted rules.
 
 The DMZ can access the Internet for updates and query internal DNS, but it cannot freely access the LAN or internal servers.
 
+## Screenshots
+
+### Network and Firewall
+
+![OPNsense interfaces](screenshots/opnsense-interfaces.png)
+
+![OPNsense DMZ rules](screenshots/opnsense-dmz-rules.png)
+
+![OPNsense WAN to DMZ NAT](screenshots/opnsense-wan-nat-dmz.png)
+
+### Active Directory and Group Policy
+
+![Active Directory OU structure](screenshots/ad-ou-structure.png)
+
+![GPO drive mapping](screenshots/gpo-drive-map.png)
+
+![Windows 11 user GPO result](screenshots/win11-gpresult-user.png)
+
+### DMZ Web Server
+
+![Nginx internal DNS access](screenshots/nginx-web01-internal-dns.png)
+
+![DMZ segmentation tests](screenshots/web01-dmz-segmentation-tests.png)
+
+### Backup and Recovery
+
+![Proxmox vzdump backups](screenshots/proxmox-vzdump-backups.png)
+
 ## Status
 
 Lab implementation is complete and validated. Documentation is in progress.
