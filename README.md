@@ -2,17 +2,9 @@
 
 Enterprise-style homelab built on Proxmox VE to practice system and network administration.
 
-The lab simulates a small company network with:
-- OPNsense firewall/router
-- Segmented LAN / SERVERS / DMZ networks
-- Windows Server Active Directory
-- Internal DNS
-- Windows 11 domain client
-- Group Policy Objects
-- Network share with AD permissions
-- Debian/Nginx web server in a DMZ
-- WAN-to-DMZ NAT publication
-- Proxmox snapshots and backups
+## Overview
+
+This lab simulates a small business infrastructure with network segmentation, Active Directory, Group Policy, a DMZ web server, firewall rules, NAT publication, and backup/recovery practices.
 
 ## Network Zones
 
@@ -32,37 +24,22 @@ The lab simulates a small company network with:
 | WIN11-LAB | Domain-joined Windows 11 client | 10.10.10.105 |
 | web01 | Debian/Nginx DMZ web server | 10.10.30.10 |
 
-## Features Implemented
+## Implemented Features
 
-- Proxmox virtual networking with isolated bridges
-- OPNsense firewall with WAN, LAN, SERVERS and DMZ interfaces
-- Active Directory domain: homelab.local
+- Proxmox VE virtual networking with isolated bridges
+- OPNsense firewall with LAN / SERVERS / DMZ segmentation
+- Windows Server Active Directory domain: homelab.local
 - AD-integrated DNS
-- Windows 11 client joined to the domain
-- OU structure, users and security groups
-- GPOs for login banner, drive mapping and user restrictions
+- Windows 11 domain-joined client
+- Organizational Units, users and security groups
+- Group Policy Objects
 - File share with AD group-based permissions
-- Debian/Nginx web server deployed in the DMZ
-- DNS record: web01.homelab.local -> 10.10.30.10
-- NAT rule: 192.168.0.57:8080 -> 10.10.30.10:80
+- Automatic drive mapping through GPO
+- Debian/Nginx web server in the DMZ
+- Internal DNS record: web01.homelab.local -> 10.10.30.10
+- WAN-to-DMZ NAT: 192.168.0.57:8080 -> 10.10.30.10:80
 - Firewall hardening between LAN, SERVERS and DMZ
-- Validation tests for DNS, AD, GPO, SMB, HTTP, NAT and segmentation
 - Proxmox snapshots and vzdump backups
-
-## Network Diagram
-
-Home Network / WAN 192.168.0.0/24
-        |
-        | OPNsense WAN 192.168.0.57
-        |
-    [ OPNsense ]
-      /   |   \
-     /    |    \
-   LAN  SERVERS DMZ
-10.10.10.0/24 10.10.20.0/24 10.10.30.0/24
-   |       |       |
-WIN11   SRV-AD01  web01
-10.10.10.105 10.10.20.10 10.10.30.10
 
 ## Validation Summary
 
@@ -84,13 +61,9 @@ WIN11   SRV-AD01  web01
 
 The lab follows a least-privilege firewall model.
 
-Default broad rules such as LAN net to any and SERVERS net to any were disabled and replaced with targeted rules.
+Default broad firewall rules were disabled and replaced with targeted rules.
 
 The DMZ can access the Internet for updates and query internal DNS, but it cannot freely access the LAN or internal servers.
-
-## Documentation
-
-More detailed documentation is available in the docs directory.
 
 ## Status
 
