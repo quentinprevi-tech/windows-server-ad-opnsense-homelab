@@ -151,8 +151,13 @@ The dashboard was also tested by temporarily stopping an exporter and confirming
 
 ## Screenshots
 
-- screenshots/prometheus-ad-lab-targets.png
-- screenshots/grafana-ad-lab-status-dashboard.png
+### Prometheus targets
+
+![Prometheus AD lab targets](../screenshots/prometheus-ad-lab-targets.png)
+
+### Grafana status dashboard
+
+![Grafana AD lab status dashboard](../screenshots/grafana-ad-lab-status-dashboard.png)
 
 ## Design Reasoning
 
