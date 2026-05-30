@@ -22,7 +22,7 @@ This lab simulates a small business infrastructure with network segmentation, Ac
 
 ## Main Virtual Machines
 
-- opnsense
+- OPNsense
   - Role: Firewall/router
   - IPs: 192.168.0.57 / 10.10.10.1 / 10.10.20.1 / 10.10.30.1
 
