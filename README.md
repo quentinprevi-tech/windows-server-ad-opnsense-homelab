@@ -130,4 +130,9 @@ The DMZ can access the Internet for updates and query internal DNS, but it canno
 
 ## Status
 
-Lab implementation is complete and validated. Documentation is in progress.
+Lab implementation is complete, validated and documented for the current scope. Future improvements may include monitoring, SIEM integration and additional automation.
+
+
+## Documentation
+
+- [Network Architecture Diagram](docs/network-diagram.md)
