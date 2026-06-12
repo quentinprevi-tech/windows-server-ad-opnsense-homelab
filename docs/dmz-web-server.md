@@ -51,34 +51,29 @@ This allows internal clients to access the web server using:
 
 ## WAN Publication
 
-The web server was publishlled on web01 and configured with a dedicated site.
+The web server was published through an OPNsense WAN-to-DMZ NAT rule.
 
-Main paths:
+The NAT rule forwards:
 
-- Web root: /var/www/web01
-- Nginx site config: /etc/nginx/sites-available/web01
-- Enabled site: /etc/nginx/sites-enabled/web01
-- Access log: /var/log/nginx/web01_access.log
-- Error log: /var/log/nginx/web01_error.log
+- http://192.168.0.57:8080
+- 10.10.30.10:80
 
-The default Nginx site was disabled and replaced with a custom page.
+This allows the DMZ web server to be reached through a controlled published port without exposing the LAN or SERVERS network.
 
-## Internal DNS
+## Firewall Segmentation
 
-An A record was created on SRV-AD01 in the homelab.local DNS zone.
+The DMZ web server is allowed only the traffic required for the lab.
 
-- Record name: web01
-- FQDN: web01.homelab.local
-- IP address: 10.10.30.10
+Allowed traffic includes:
 
-This allows internal clients to access the web server using:
+- LAN to web01 HTTP access
+- WAN to web01 HTTP access through the NAT rule
+- DMZ to SRV-AD01 DNS
+- DMZ to Internet HTTP/HTTPS for updates
 
-- http://web01.homelab.local
-- http://10.10.30.10
+Blocked traffic includes:
 
-## WAN Publication
-
-The web server was publisho LAN
+- DMZ to LAN
 - DMZ to SERVERS except DNS to SRV-AD01
 - DMZ to SRV-AD01 ping
 - DMZ to SMB or Active Directory services
